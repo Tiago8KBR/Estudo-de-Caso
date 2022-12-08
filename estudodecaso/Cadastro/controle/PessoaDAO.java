@@ -29,7 +29,7 @@ public class PessoaDAO implements IPessoaDAO {
 		return false;
 	}
 
-	public boolean alterar(Pessoa p, long cpf) {
+	public boolean alterar(Pessoa p, Long cpf) {
 		for (Pessoa pessoa : tabelapessoas) {
 			if (pessoa.getCpf() == cpf) {
 				pessoa.setNome(p.getNome());
@@ -40,7 +40,7 @@ public class PessoaDAO implements IPessoaDAO {
 	}
 
 	@Override
-	public boolean excluir(long cpf) {
+	public boolean excluir(Long cpf) {
 		for (Pessoa pessoa : tabelapessoas) {
 			if (pessoa.getCpf() == cpf) {
 				tabelapessoas.remove(pessoa);
@@ -56,8 +56,13 @@ public class PessoaDAO implements IPessoaDAO {
 	}
 
 	@Override
-	public boolean excluir(String cpf) {
-		// TODO Auto-generated method stub
-		return false;
+	public Pessoa buscarPessoaPorCpf(Long cpf) {
+		for (Pessoa pessoa : tabelapessoas) {
+			if (pessoa.getCpf() == cpf) {
+				return pessoa;
+			}
+		}
+		return null;
 	}
+
 }

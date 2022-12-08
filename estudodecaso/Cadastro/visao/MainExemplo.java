@@ -53,16 +53,22 @@ public class MainExemplo {
 
 				boolean valida = bancopessoa.inserir(p);
 				if (valida == true) {
-					System.out.println("CPF inserido");
+					System.out.println("pessoa cadastrada");
 				} else {
-					System.out.println("O CPF não foi inserido");
+					System.out.println("Pessoa não cadastrada");
 				}
 			}
 			case 2: {
 				System.out.println("Insira o cpf para fazer alteração");
-				String alteracao = leitura.nextLine();
-				String cpf = String.valueOf(alteracao);
-				boolean valida = bancopessoa.alterar(null, 0);
+				String cpf = leitura.nextLine();
+
+				Pessoa p = bancopessoa.buscarPessoaPorCpf(Long.valueOf(cpf));
+
+				System.out.println("Digite o novo nome:");
+				String nomeNovo = leitura.nextLine();
+				p.setNome(nomeNovo);
+
+				boolean valida = bancopessoa.alterar(p, p.getCpf());
 				if (valida == true) {
 					System.out.println("Pessoa cadastrado");
 				} else {
@@ -73,8 +79,8 @@ public class MainExemplo {
 				System.out.println("Insira o cpf para fazer exclusão");
 				String excluir = leitura.nextLine();
 				String cpf = String.valueOf(excluir);
-				
-				boolean valida = bancopessoa.excluir(cpf);
+
+				boolean valida = bancopessoa.excluir(Long.valueOf(cpf));
 				if (valida == true) {
 					System.out.println("O CPF foi excluido");
 				} else {
